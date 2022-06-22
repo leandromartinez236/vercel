@@ -3,8 +3,8 @@ require("dotenv").config();
 const pg = require("pg");
 const sequelize = new Sequelize(
   process.env.DB,
-  process.env.USER,
-  process.env.PASSWORD,
+  // process.env.USER,
+  // process.env.PASSWORD,
   {
     dialectModule: pg,
     dialect: "postgres",
