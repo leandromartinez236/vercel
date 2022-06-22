@@ -1,15 +1,19 @@
-const app = require("./app");
-const { sequelize } = require("./api/database/db");
+const express = require("express");
+const morgan = require("morgan");
+require("dotenv").config();
+require("./api/asociations/asociation");
 
-const main = async () => {
-  try {
-    await sequelize.sync({ force: false });
-    console.log("Connection has been established successfully");
-    app.listen(3000);
-    console.log("Server running on port", 3000);
-  } catch (error) {
-    console.log("Unable to connect to the database", error);
-  }
-};
+const userRoutes = require("./api/routes/user.routes");
+const ticketRoutes = require("./api/routes/ticket.routes");
 
-main();
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+
+app.use("/api/users", userRoutes);
+app.use("/api/tickets", ticketRoutes);
+
+app.listen(3000, () => console.log("Server running on port ", 3000));
+//
