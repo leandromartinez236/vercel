@@ -15,7 +15,7 @@ const getUsers = async (req, res) => {
       count: users.length,
       users: users,
     };
-    res.status(200).json(response);
+    res.status(200).json(users);
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +36,7 @@ const getOneUser = async (req, res) => {
       },
       user: userFound,
     };
-    return res.status(200).json(response);
+    return res.status(200).json(userFound);
   } catch (error) {
     console.log(error);
   }
